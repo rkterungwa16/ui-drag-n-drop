@@ -1,16 +1,26 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import ListWrapperStyle from "./style";
 import ListContainer from "../ListContainer/ListContainer";
-import BoardContext from "../../Board/BoardContext";
 import { ListInterface } from "../../types";
+import { StoreState } from "../../state/models";
 
 
 const ListWrapper = () => {
-  const { data } = React.useContext(BoardContext) as { data: ListInterface[] };
+  const { lists } = useSelector((state: StoreState) => {
+    const {
+      lists
+    } = state.lists;
+
+    return {
+      lists
+    }
+  });
   return (
     <>
       {
-        data.map((listDetail) => {
+        lists.map((listDetail: ListInterface) => {
           return (
             <ListWrapperStyle>
               <ListContainer {...listDetail} />
