@@ -9,6 +9,7 @@ const ListCardsStyle = styled.div`
   padding: 0 4px;
   z-index: 1;
   min-height: 0;
+  }}
 `;
 
 export default ListCardsStyle;

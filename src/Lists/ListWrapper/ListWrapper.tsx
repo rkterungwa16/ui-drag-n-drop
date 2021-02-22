@@ -5,9 +5,13 @@ import ListWrapperStyle from "./style";
 import ListContainer from "../ListContainer/ListContainer";
 import { ListInterface } from "../../types";
 import { StoreState } from "../../state/models";
+import { moveCard } from "../../state/actions/creators";
 
 
 const ListWrapper = () => {
+  const dispatch = useDispatch();
+  const moveCardAction = bindActionCreators(moveCard, dispatch);
+
   const { lists } = useSelector((state: StoreState) => {
     const {
       lists
@@ -22,8 +26,8 @@ const ListWrapper = () => {
       {
         lists.map((listDetail: ListInterface) => {
           return (
-            <ListWrapperStyle>
-              <ListContainer {...listDetail} />
+            <ListWrapperStyle key={`wrapper-${listDetail.id}`} >
+              <ListContainer key={`container-${listDetail.id}`} {...listDetail} />
             </ListWrapperStyle>
           )
         })
