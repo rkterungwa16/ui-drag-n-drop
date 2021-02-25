@@ -1,4 +1,5 @@
 export enum CardActions {
   MOVE_CARD = "MOVE_CARD",
+  MOVE_LIST = "MOVE_LIST",
   TOGGLE_DRAGGING = "TOGGLE_DRAGGING"
 }

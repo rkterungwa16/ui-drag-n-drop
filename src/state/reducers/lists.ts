@@ -16,10 +16,20 @@ export default function listReducer(
       };
 
     case CardActions.MOVE_CARD:
-      const { data } = action;
+      const { data: cardCoords } = action;
       return {
         ...state,
-        lists: [...state.lists, data],
+        lists: [...state.lists, cardCoords],
+      };
+
+    case CardActions.MOVE_LIST:
+      const { data: listCoord } = action;
+      const currentList = [...state.lists];
+      const currentItem = currentList.splice(listCoord.currentX, 1)[0];
+      currentList.splice(listCoord.nextX, 0, currentItem);
+      return {
+        ...state,
+        lists: [...currentList],
       };
 
     default:
